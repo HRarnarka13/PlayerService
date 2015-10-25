@@ -8,15 +8,18 @@ public class FantasyPoint {
     private int playerId;
     private double fantasyPoints;
 
+    public FantasyPoint() {
+    }
     public FantasyPoint(int fantasyPointId, int playerId, double fantasyPoints) {
         this.fantasyPointId = fantasyPointId;
         this.playerId = playerId;
         this.fantasyPoints = fantasyPoints;
     }
+    public FantasyPoint(int playerId, double fantasyPoint) {
 
-    public FantasyPoint() {
+        this.playerId = playerId;
+        this.fantasyPoints = fantasyPoint;
     }
-
     public int getFantasyPointId() {
     
         return fantasyPointId;
@@ -26,11 +29,7 @@ public class FantasyPoint {
         this.fantasyPointId = fantasyPointId;
     }
 
-    public FantasyPoint(int playerId, double fantasyPoint) {
 
-        this.playerId = playerId;
-        this.fantasyPoints = fantasyPoint;
-    }
 
 
     public int getPlayerId() {
