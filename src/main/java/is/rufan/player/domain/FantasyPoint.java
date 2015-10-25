@@ -8,6 +8,9 @@ public class FantasyPoint {
     private Player player;
     private double fantasyPoints;
 
+    public FantasyPoint() {
+    }
+
     public FantasyPoint(int fantasyPointId, Player player, double fantasyPoints) {
         this.fantasyPointId = fantasyPointId;
         this.player = player;
