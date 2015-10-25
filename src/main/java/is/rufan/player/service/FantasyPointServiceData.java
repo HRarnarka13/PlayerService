@@ -29,18 +29,18 @@ public class FantasyPointServiceData implements FantasyPointService {
     }
 
     public FantasyPoint getFantasyPointByPlayerId(int playerId) {
-        return null;
+        return fantasyPointDataGateway.getFantasyPointByPlayerId(playerId);
     }
 
     public FantasyPoint getFantasyPointById(int fantasyPointId) {
-        return null;
+        return fantasyPointDataGateway.getFantasyPointById(fantasyPointId);
     }
 
     public List<FantasyPoint> getFantasyPoints() {
-        return null;
+        return fantasyPointDataGateway.getFantasyPoints();
     }
 
-    public void addFantasyPoint(Player player, double fantasyPoint) throws FantasyPointException {
-
+    public void addFantasyPoint(FantasyPoint fantasyPoint) throws FantasyPointException {
+        fantasyPointDataGateway.addFantasyPoint(fantasyPoint);
     }
 }
