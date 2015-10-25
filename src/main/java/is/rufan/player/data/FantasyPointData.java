@@ -21,7 +21,7 @@ public class FantasyPointData extends RuData implements FantasyPointDataGateway 
         SimpleJdbcInsert insertFantasyPoint =
                 new SimpleJdbcInsert(getDataSource()).withTableName("fantasypoints");
         Map<String, Object> fantasyPointParameters = new HashMap<String, Object>(3);
-        fantasyPointParameters.put("playerId", fantasyPoint.getPlayer().getPlayerId());
+        fantasyPointParameters.put("playerId", fantasyPoint.getPlayerId());
         fantasyPointParameters.put("fantasyPoint", fantasyPoint.getFantasyPoints());
         fantasyPointParameters.put("fantasyPointId", fantasyPoint.getFantasyPointId());
 
@@ -37,14 +37,24 @@ public class FantasyPointData extends RuData implements FantasyPointDataGateway 
     }
 
     public List<FantasyPoint> getFantasyPoints() {
-        return null;
+        String sql = "select * from fantasyPoints";
+        JdbcTemplate queryFantasyPoints = new JdbcTemplate(getDataSource());
+        List<FantasyPoint> fantasyPoints = queryFantasyPoints.query(sql, new FantasyPointRowMapper());
+        return fantasyPoints;
     }
 
     public FantasyPoint getFantasyPointById(int fantasyPointId) {
-        return null;
+        String sql = "Select * from fantasyPoints where id = ?";
+        JdbcTemplate queryFantasyPoints = new JdbcTemplate(getDataSource());
+        FantasyPoint fantasyPoint = queryFantasyPoints.queryForObject(sql, new Object[]{fantasyPointId}, new FantasyPointRowMapper());
+
+        return fantasyPoint;
     }
 
     public FantasyPoint getFantasyPointByPlayerId(int playerId) {
-        return null;
+        String sql = "Select *  from fantasyPoints where id = ?";
+        JdbcTemplate queryFantasyPoints = new JdbcTemplate(getDataSource());
+        FantasyPoint fantasyPoint = queryFantasyPoints.queryForObject(sql, new Object[]{playerId}, new FantasyPointRowMapper());
+        return fantasyPoint;
     }
 }

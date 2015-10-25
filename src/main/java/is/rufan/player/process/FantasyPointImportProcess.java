@@ -2,6 +2,7 @@ package is.rufan.player.process;
 
 
 import is.rufan.player.domain.Player;
+import is.rufan.player.service.FantasyPointService;
 import is.rufan.player.service.PlayerService;
 import is.rufan.player.service.PlayerServiceException;
 import is.ruframework.process.RuAbstractProcess;
@@ -18,11 +19,36 @@ import java.util.logging.Logger;
  * Created by eysteinn on 25/10/15.
  */
 public class FantasyPointImportProcess extends  RuAbstractProcess implements RuReadHandler {
-    private PlayerService playerService;
-    @Override
-    public void startProcess() {
+    private FantasyPointService fantasyPointService;
+    MessageSource msg;
+    Logger logger = Logger.getLogger(this.getClass().getName());
 
+    @Override
+    public void beforeProcess()
+    {
+        ApplicationContext applicationContext = new FileSystemXmlApplicationContext("classpath:playerapp.xml");
+        fantasyPointService = (FantasyPointService) applicationContext.getBean("fantasyPointService");
+        msg = (MessageSource) applicationContext.getBean("messageSource");
+        logger.info("processbefore: " + getProcessContext().getProcessName());
     }
+    @Override
+    public void startProcess()
+    {
+        RuReaderFactory factory = new RuReaderFactory("playerprocess.xml");
+        RuReader reader = factory.getReader("fantasyPointReader");
+
+        reader.setReadHandler(this);
+        try
+        {
+            reader.read();
+        }
+        catch (RuReaderException e)
+        {
+            String errorMsg = "Unable to read specified file.";
+            logger.severe(errorMsg);
+        }
+    }
+
 
     public void read(int i, Object o) {
 

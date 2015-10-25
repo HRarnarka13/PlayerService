@@ -5,16 +5,20 @@ package is.rufan.player.domain;
  */
 public class FantasyPoint {
     private int fantasyPointId;
-    private Player player;
+    private int playerId;
     private double fantasyPoints;
 
-    public FantasyPoint(int fantasyPointId, Player player, double fantasyPoints) {
+    public FantasyPoint(int fantasyPointId, int playerId, double fantasyPoints) {
         this.fantasyPointId = fantasyPointId;
-        this.player = player;
+        this.playerId = playerId;
         this.fantasyPoints = fantasyPoints;
     }
 
+    public FantasyPoint() {
+    }
+
     public int getFantasyPointId() {
+    
         return fantasyPointId;
     }
 
@@ -22,19 +26,19 @@ public class FantasyPoint {
         this.fantasyPointId = fantasyPointId;
     }
 
-    public FantasyPoint(Player player, double fantasyPoint) {
+    public FantasyPoint(int playerId, double fantasyPoint) {
 
-        this.player = player;
+        this.playerId = playerId;
         this.fantasyPoints = fantasyPoint;
     }
 
 
-    public Player getPlayer() {
-        return player;
+    public int getPlayerId() {
+        return playerId;
     }
 
-    public void setPlayer(Player player) {
-        this.player = player;
+    public void setPlayerId(int playerId) {
+        this.playerId = playerId;
     }
 
     public double getFantasyPoints() {

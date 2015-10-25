@@ -28,6 +28,6 @@
        <bean id="playerData" class="is.rufan.player.data.PlayerData"/>
        <bean id="countryData" class="is.rufan.player.data.CountryData"/>
        <bean id="positionData" class="is.rufan.player.data.PositionData"/>
-    <bean id="positionData" class="is.rufan.player.data.FantasyPointData"/>
+    
 
 </beans>
