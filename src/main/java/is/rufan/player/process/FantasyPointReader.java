@@ -30,16 +30,15 @@ public class FantasyPointReader extends RuAbstractReader {
             FantasyPoint fantasyPoint = new FantasyPoint();
             fantacyData = (JSONObject) jsonArray.get(i);
 
-            Player player = new Player();
-            player.setTeamId(RuJsonUtil.getInt(fantacyData, "PlayerId"));
+            int playerid = RuJsonUtil.getInt(fantacyData, "PlayerId"));
             JSONObject json_points = (JSONObject) fantacyData.get("FantasyPoints");
-            // double points = String.
+            double points = Double.parseDouble(json_points.toString());
 
-            // fantasyPoint.setFantasyPoints();
+            fantasyPoint.setPlayerId(playerid);
+            fantasyPoint.setFantasyPoints(points);
+            fantasyPoints.add(fantasyPoint);
         }
-
-
-        return null;
+        return fantasyPoints;
     }
 }
 
