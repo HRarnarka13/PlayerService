@@ -1,7 +1,9 @@
 package is.rufan.player.process;
 
 
+import is.rufan.player.domain.FantasyPoint;
 import is.rufan.player.domain.Player;
+import is.rufan.player.service.FantasyPointException;
 import is.rufan.player.service.FantasyPointService;
 import is.rufan.player.service.PlayerService;
 import is.rufan.player.service.PlayerServiceException;
@@ -50,7 +52,16 @@ public class FantasyPointImportProcess extends  RuAbstractProcess implements RuR
     }
 
 
-    public void read(int i, Object o) {
-
+    public void read(int count, Object object)
+    {
+        FantasyPoint fantasyPoint = (FantasyPoint) object;
+        try
+        {
+              fantasyPointService.addFantasyPoint(fantasyPoint);
+        }
+        catch (FantasyPointException se)
+        {
+            logger.warning("Fantasy point id " + fantasyPoint.getFantasyPointId() + " not added " + se.getMessage());
+        }
     }
 }

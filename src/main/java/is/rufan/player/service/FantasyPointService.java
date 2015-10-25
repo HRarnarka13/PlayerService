@@ -12,5 +12,5 @@ public interface FantasyPointService {
     FantasyPoint getFantasyPointByPlayerId(int playerId);
     FantasyPoint getFantasyPointById(int fantasyPointId);
     List<FantasyPoint> getFantasyPoints();
-    void addFantasyPoint(Player player, double fantasyPoint) throws FantasyPointException;
+    void addFantasyPoint(FantasyPoint fantasyPoint) throws FantasyPointException;
 }
