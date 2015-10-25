@@ -36,7 +36,7 @@ public class FantasyPointImportProcess extends  RuAbstractProcess implements RuR
     @Override
     public void startProcess()
     {
-        RuReaderFactory factory = new RuReaderFactory("playerprocess.xml");
+        RuReaderFactory factory = new RuReaderFactory("fantasypointprocess.xml");
         RuReader reader = factory.getReader("fantasyPointReader");
 
         reader.setReadHandler(this);

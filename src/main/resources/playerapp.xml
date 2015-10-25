@@ -10,5 +10,6 @@
     </bean>
 
     <bean id="playerService" class="is.rufan.player.service.PlayerServiceData"/>
+    <bean id="fantasyPointService" class="is.rufan.player.service.FantasyPointServiceData"/>
 
 </beans>

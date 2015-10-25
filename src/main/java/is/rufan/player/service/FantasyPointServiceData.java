@@ -13,13 +13,19 @@ import java.util.List;
 /**
  * Created by eysteinn on 25/10/15.
  */
-public class FanstasyPointServiceData implements FantasyPointService {
+public class FantasyPointServiceData implements FantasyPointService {
+
+
     RuDataAccessFactory factory;
     FantasyPointDataGateway fantasyPointDataGateway;
 
-    public FanstasyPointServiceData() throws RuException {
+    public FantasyPointServiceData() throws RuException {
         factory = RuDataAccessFactory.getInstance("playerdata.xml");
         fantasyPointDataGateway = (FantasyPointDataGateway) factory.getDataAccess("fantasyPointData");
+    }
+
+    public void addFantasyPoint(FantasyPoint fantasyPoint) throws FantasyPointException {
+        fantasyPointDataGateway.addFantasyPoint(fantasyPoint);
     }
 
     public FantasyPoint getFantasyPointByPlayerId(int playerId) {
