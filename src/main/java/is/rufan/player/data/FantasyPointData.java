@@ -19,7 +19,8 @@ public class FantasyPointData extends RuData implements FantasyPointDataGateway 
 
     public void addFantasyPoint(FantasyPoint fantasyPoint) {
         SimpleJdbcInsert insertFantasyPoint =
-                new SimpleJdbcInsert(getDataSource()).withTableName("fantasypoints");
+                new SimpleJdbcInsert(getDataSource()).withTableName("fantasypoints")
+                .usingGeneratedKeyColumns("fantasyPointId");
         Map<String, Object> fantasyPointParameters = new HashMap<String, Object>(3);
         fantasyPointParameters.put("playerId", fantasyPoint.getPlayerId());
         fantasyPointParameters.put("fantasyPoint", fantasyPoint.getFantasyPoints());
