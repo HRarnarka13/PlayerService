@@ -14,52 +14,57 @@ import java.util.List;
 
 public class PlayerServiceData implements PlayerService
 {
-  RuDataAccessFactory factory;
-  PlayerDataGateway playerDataGateway;
-  PositionDataGateway positionDataGateway;
-  CountryDataGateway countryDataGateway;
+    RuDataAccessFactory factory;
+    PlayerDataGateway playerDataGateway;
+    PositionDataGateway positionDataGateway;
+    CountryDataGateway countryDataGateway;
 
-  public PlayerServiceData() throws RuException
-  {
-    factory = RuDataAccessFactory.getInstance("playerdata.xml");
-    playerDataGateway = (PlayerDataGateway) factory.getDataAccess("playerData");
-    positionDataGateway = (PositionDataGateway) factory.getDataAccess("positionData");
-    countryDataGateway = (CountryDataGateway) factory.getDataAccess("countryData");
-  }
+    public PlayerServiceData() throws RuException {
+        factory = RuDataAccessFactory.getInstance("playerdata.xml");
+        playerDataGateway = (PlayerDataGateway) factory.getDataAccess("playerData");
+        positionDataGateway = (PositionDataGateway) factory.getDataAccess("positionData");
+        countryDataGateway = (CountryDataGateway) factory.getDataAccess("countryData");
+    }
 
-  public Player getPlayer(int playerId)
-  {
-    return playerDataGateway.getPlayer(playerId);
-  }
+    public Player getPlayer(int playerId)
+    {
+        return playerDataGateway.getPlayer(playerId);
+    }
 
-  public List<Player> getPlayers(int teamId)
-  {
-    return null;
-  }
+    public List<Player> getPlayers(int teamId)
+    {
+        return null;
+    }
 
-  public List<Player> getPlayersByTeamAbbreviation(int leagueId, String teamAbbreviation)
-  {
-    return null;
-  }
+    public List<Player> getPlayersByTeamId(int leagueId, int teamid){
+        return playerDataGateway.getPlayersByTeamId(leagueId, teamid);
+    }
 
-  public void addPlayer(Player player) throws PlayerServiceException
-  {
-    playerDataGateway.addPlayer(player);
+    public List<Player> getPlayersByTeamAbbreviation(int leagueId, String teamAbbreviation) {
+        return playerDataGateway.getPlayersByTeamAbbreviation(leagueId, teamAbbreviation);
+    }
 
-    Country country = countryDataGateway.getCountry(player.getNationality().getCountryId());
-    if(country == null)
-      countryDataGateway.addCountry(player.getNationality());
-  }
+    public void addPlayer(Player player) throws PlayerServiceException {
+        playerDataGateway.addPlayer(player);
 
-  public Collection<Position> getPositions()
-  {
-    return positionDataGateway.getPositions();
-  }
+        Country country = countryDataGateway.getCountry(player.getNationality().getCountryId());
+        if(country == null)
+            countryDataGateway.addCountry(player.getNationality());
+    }
 
-  public Position getPosition(int positionId)
-  {
-    return positionDataGateway.getPosition(positionId);
-  }
+    public  Collection<Position> getPlayerPosition(int playerid) {
+        return positionDataGateway.getPlayerPosition(playerid);
+    }
+
+    public Collection<Position> getPositions()
+    {
+        return positionDataGateway.getPositions();
+    }
+
+    public Position getPosition(int positionId)
+    {
+        return positionDataGateway.getPosition(positionId);
+    }
 }
 
 

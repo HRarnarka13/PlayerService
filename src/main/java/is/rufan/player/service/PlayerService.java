@@ -10,7 +10,9 @@ public interface PlayerService
 {
   Player getPlayer(int playerId);
   List<Player> getPlayers(int teamId);
+  public Collection<Position> getPlayerPosition(int playerid);
   List<Player> getPlayersByTeamAbbreviation(int leagueId, String teamAbbreviation);
+  List<Player> getPlayersByTeamId(int leagueId, int teamid);
   void addPlayer(Player player) throws PlayerServiceException;
 
   Collection<Position> getPositions();

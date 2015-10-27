@@ -23,8 +23,7 @@ public class FantasyPointData extends RuData implements FantasyPointDataGateway 
                 .usingGeneratedKeyColumns("fantasyPointId");
         Map<String, Object> fantasyPointParameters = new HashMap<String, Object>(3);
         fantasyPointParameters.put("playerId", fantasyPoint.getPlayerId());
-        fantasyPointParameters.put("fantasyPoint", fantasyPoint.getFantasyPoints());
-        fantasyPointParameters.put("fantasyPointId", fantasyPoint.getFantasyPointId());
+        fantasyPointParameters.put("fantasyPoints", fantasyPoint.getFantasyPoints());
 
         try
         {

@@ -8,26 +8,36 @@ import java.util.Collection;
 
 public class PositionData extends RuData implements PositionDataGateway
 {
-  public Position getPosition(int positionId)
-  {
-    String sql = "select * from positions where positionid=?";
-    JdbcTemplate queryPosition= new JdbcTemplate(getDataSource());
+    public Position getPosition(int positionId)
+    {
+        String sql = "select * from positions where positionid=?";
+        JdbcTemplate queryPosition= new JdbcTemplate(getDataSource());
 
-    Position position = queryPosition.queryForObject(sql,
-        new Object[] { positionId },
-        new PositionRowMapper());
+        Position position = queryPosition.queryForObject(sql,
+                new Object[] { positionId },
+                new PositionRowMapper());
 
-    return position;
-  }
+        return position;
+    }
 
-  public Collection<Position> getPositions()
-  {
-    String sql = "select * from positions";
-    JdbcTemplate queryPosition= new JdbcTemplate(getDataSource());
+    public Collection<Position> getPositions()
+    {
+        String sql = "select * from positions";
+        JdbcTemplate queryPosition= new JdbcTemplate(getDataSource());
 
-    Collection<Position> positions = queryPosition.query(sql,
-        new PositionRowMapper());
-    return positions;
-  }
+        Collection<Position> positions = queryPosition.query(sql,
+                new PositionRowMapper());
+        return positions;
+    }
+
+    public Collection<Position> getPlayerPosition(int playerid) {
+        String sql = "select pos.* from positions pos " +
+                     "join playerpositions pp on pos.positionid = pp.positionid " +
+                     "where pp.playerid = ?";
+        JdbcTemplate queryPosition= new JdbcTemplate(getDataSource());
+
+        Collection<Position> positions = queryPosition.query(sql, new Object[]{ playerid}, new PositionRowMapper());
+        return positions;
+    }
 }
 

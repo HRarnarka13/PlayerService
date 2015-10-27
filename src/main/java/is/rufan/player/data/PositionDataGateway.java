@@ -8,4 +8,5 @@ public interface PositionDataGateway
 {
   public Position getPosition(int positionId);
   public Collection<Position> getPositions();
+  public  Collection<Position> getPlayerPosition(int playerid);
 }

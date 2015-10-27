@@ -1,5 +1,6 @@
 drop table playerpositions
 
+
 create table playerpositions
 (
   positionid int NOT NULL,

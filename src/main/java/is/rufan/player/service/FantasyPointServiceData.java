@@ -39,8 +39,4 @@ public class FantasyPointServiceData implements FantasyPointService {
     public List<FantasyPoint> getFantasyPoints() {
         return fantasyPointDataGateway.getFantasyPoints();
     }
-
-    public void addFantasyPoint(FantasyPoint fantasyPoint) throws FantasyPointException {
-        fantasyPointDataGateway.addFantasyPoint(fantasyPoint);
-    }
 }
